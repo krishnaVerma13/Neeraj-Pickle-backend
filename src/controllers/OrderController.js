@@ -4,7 +4,8 @@ const ApiResponce = require('../utils/ApiResponce')
 
 const createOrder = asyncHandler(async (req, res) => {
     const orderData = req.body;
-    console.log("request body :", orderData);
+    // console.log("request body :", orderData);
+    console.log("Create Api call :");
 
     if (!orderData) {
         return res.json(new ApiResponce(400, "Order data is required", null, null));
@@ -12,7 +13,8 @@ const createOrder = asyncHandler(async (req, res) => {
 
     const order = await Order.create(orderData);
 
-    console.log("New order created:", order);
+    // console.log("New order created:", order);
+    console.log("New order created:");
 
     return res.json(new ApiResponce(201, "Order created successfully!", order, null));
 });
@@ -20,7 +22,8 @@ const createOrder = asyncHandler(async (req, res) => {
 const getAllOrders = asyncHandler(async (req, res) => {
     const data = await Order.find();
 
-    console.log("All orders data:", data);
+    // console.log("All orders data:", data);
+    console.log("get All orders API call:");
 
     if (data.length > 0) {
         return res.json(new ApiResponce(200, "All orders fetched successfully!", data, null));
@@ -34,7 +37,8 @@ const getOrderById = asyncHandler(async (req, res) => {
 
     const data = await Order.findById(id);
 
-    console.log("Order fetched by ID:", data);
+    // console.log("Order fetched by ID:", data);
+    console.log("Order fetched by ID:");
 
     if (!data) {
         return res.json(new ApiResponce(404, "Order not found", null, null));
@@ -81,7 +85,8 @@ const getOrdersByCity = asyncHandler(async (req, res) => {
 
     const data = await Order.find({ userCity: city });
 
-    console.log("Orders by city:", data);
+    // console.log("Orders by city:", data);
+    console.log("get Orders by city API call:");
 
     if (data.length === 0) {
         return res.json(new ApiResponce(404, "No orders found for this city", null, null));

@@ -4,7 +4,7 @@ const CustomizeOrder = require('../modules/CustomizeOrderSchema')
 
 const CustomizeOrderCreate = asyncHandler(async (req, res)=>{
     const orderData = req.body;
-    console.log("request body :",orderData);
+    // console.log("request body :",orderData);
     
     if (!orderData) {
         return res.json(new ApiResponce(400, "Order data is required", null, null));
@@ -12,7 +12,7 @@ const CustomizeOrderCreate = asyncHandler(async (req, res)=>{
 
     const order = await CustomizeOrder.create(orderData);
 
-    console.log("New order created:", order);
+    console.log("New customize order created:");
 
     return res.json(new ApiResponce(201, "Order created successfully!", order, null));
 })
@@ -20,7 +20,8 @@ const CustomizeOrderCreate = asyncHandler(async (req, res)=>{
 const getCustomizeAllOrders = asyncHandler(async (req, res) => {
     const data = await CustomizeOrder.find();
 
-    console.log("All orders data:", data);
+    // console.log("All orders data:", data);
+    console.log("get All customize orders API call:");
 
     if (data.length > 0) {
         return res.json(new ApiResponce(200, "All orders fetched successfully!", data, null));

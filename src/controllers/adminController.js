@@ -106,15 +106,14 @@ const getProductByid = asyncHandler(async (req, res) => {
 
 const deleteProduct = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    console.log("product id :", id);
+    console.log("delete product APi call :");
     const pro = await Product.findById(id)
-    console.log("product details :", pro.image);
+    // console.log("product details :", pro.image);
 
     fs.unlink(pro.image, (err) => {
         if (err) {
-            console.error('An error occurred:', err);
-            return;
-        }
+    return res.json(new ApiResponce(400, "An error occurred:",null, err));
+         }
         console.log('File deleted successfully!');
     });
 
@@ -123,7 +122,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
     }
 
     const deleted = await Product.findByIdAndDelete(id);
-     console.log(deleted);
+    //  console.log(deleted);
 
     if (!deleted) {
         return res.json(new ApiResponce(404, "Product not found", null, null));
