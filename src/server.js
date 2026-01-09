@@ -11,7 +11,8 @@ const app = express();
 app.use(cors(
   {
     origin:["http://localhost:5173",
-      "https://neeraj-pickle.vercel.app"],
+      "https://neeraj-pickle.vercel.app",
+           "https://nakultraders.vercel.app"],
     credentials: true
   }
 ));
@@ -33,3 +34,4 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 
 });
+
